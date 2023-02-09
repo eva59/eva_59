@@ -1,0 +1,111 @@
+import telebot
+from telebot import types
+
+bot = telebot.TeleBot('6232124469:AAGoNiNcOpaIANkmoovd8xoY2_DtWz6Bs9I')
+
+@bot.message_handler(commands=['start'])
+def start(message):
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.KeyboardButton("Поздороваться")
+    markup.add(btn1)
+    bot.send_message(message.from_user.id, "Привет! Я твой бот-помошник!", reply_markup=markup)
+
+@bot.message_handler(content_types=['text'])
+def get_text_messages(message):
+
+    if message.text == 'Поздороваться':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True) 
+        btn1 = types.KeyboardButton('Узнать расписание на один день')
+        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
+        markup.add(btn1, btn2)
+        bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
+
+
+
+    elif message.text == 'Узнать расписание на всю неделю':
+        bot.send_message(message.from_user.id, """Вот ваше расписание:
+        Понедельник: """)
+        bot.send_message(message.from_user.id, """Вазговоры о важном - 9:00-9:45
+        Оркестровый класс - 10:40-14:15(перерыв - 12:10-12:45)""")
+        bot.send_message(message.from_user.id, """Вторник: """)
+        bot.send_message(message.from_user.id, """Математика - 12:45-14:15
+        Музыкальная литература - 14:25-15:55
+        Литература - 16:05-17:35""")
+        bot.send_message(message.from_user.id, """Среда: """)
+        bot.send_message(message.from_user.id, """Русский язык - 9:00-10:30
+        Оркестровый класс - 10:40-14:15(перерыв - 12:10-12:45)
+        Сольфеджио - 14:25-15:55""")
+        bot.send_message(message.from_user.id, """Четверг: """)
+        bot.send_message(message.from_user.id, """История - 12:45-14:15
+        ЭТМ - 14:25-15:55""")
+        bot.send_message(message.from_user.id, """Пятница: """)
+        bot.send_message(message.from_user.id, """Оркестровый класс - 10:40-12:10
+        Музыкальная литература - 14:45-15:55
+        ИМК - 16:05-17:35""")
+        bot.send_message(message.from_user.id, """Суббота: """)
+        bot.send_message(message.from_user.id, """Английский - 10:40-12:10
+        Естествознание - 14:25-15:55""")
+
+    elif message.text == 'Узнать расписание на один день':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn3 = types.KeyboardButton('Понедельник')
+        btn4 = types.KeyboardButton('Вторник')
+        btn5 = types.KeyboardButton('Среда')
+        btn6 = types.KeyboardButton('Четверг')
+        btn7 = types.KeyboardButton('Пятница')
+        btn8 = types.KeyboardButton('Суббота')
+        btn9 = types.KeyboardButton('Назад')
+        markup.add(btn3, btn4, btn5, btn6, btn7, btn8, btn9)
+        bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
+
+
+    elif message.text == 'Понедельник':
+         bot.send_message(message.from_user.id, """
+                Понедельник: """)
+         bot.send_message(message.from_user.id, """Вазговоры о важном - 9:00-9:45
+                Оркестровый класс - 10:40-14:15(перерыв - 12:10-12:45)""")
+
+    elif message.text == 'Вторник':
+        bot.send_message(message.from_user.id, """Вторник: """)
+        bot.send_message(message.from_user.id, """Математика - 12:45-14:15
+                Музыкальная литература - 14:25-15:55
+                Литература - 16:05-17:35""")
+
+    elif message.text == 'Среда':
+        bot.send_message(message.from_user.id, """Среда: """)
+        bot.send_message(message.from_user.id, """Русский язык - 9:00-10:30
+                Оркестровый класс - 10:40-14:15(перерыв - 12:10-12:45)
+                Сольфеджио - 14:25-15:55""")
+
+    elif message.text == 'Четверг':
+        bot.send_message(message.from_user.id, """Четверг: """)
+        bot.send_message(message.from_user.id, """История - 12:45-14:15
+                ЭТМ - 14:25-15:55""")
+
+    elif message.text == 'Пятница':
+        bot.send_message(message.from_user.id, """Пятница: """)
+        bot.send_message(message.from_user.id, """Оркестровый класс - 10:40-12:10
+                Музыкальная литература - 14:45-15:55
+                ИМК - 16:05-17:35""")
+
+    elif message.text == 'Суббота':
+        bot.send_message(message.from_user.id, """Суббота: """)
+        bot.send_message(message.from_user.id, """Английский - 10:40-12:10
+                Естествознание - 14:25-15:55""")
+    elif message.text == 'Назад' :
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton('Узнать расписание на один день')
+        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
+        markup.add(btn1, btn2)
+        bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
+
+
+
+
+
+
+
+
+
+bot.polling(none_stop=True, interval=0)
