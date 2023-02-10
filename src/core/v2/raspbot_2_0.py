@@ -1,13 +1,13 @@
-import telebot
-from telebot import types
+import telebot as tb
+from ..settings import settings
 
-bot = telebot.TeleBot('6175625512:AAFl-ph6rvGLIXWJ0q3-oNkZ4P2Vt0e42GE')
+bot = tb.TeleBot(settings.telegram_token.get_secret_value())
 
 @bot.message_handler(commands=['start'])
 def start(message):
 
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton("Поздороваться")
+    markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = tb.types.KeyboardButton("Поздороваться")
     markup.add(btn1)
     bot.send_message(message.from_user.id, "Привет! Я твой бот-помошник!", reply_markup=markup)
 
@@ -15,32 +15,32 @@ def start(message):
 def get_text_messages(message):
 
     if message.text == 'Поздороваться':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание Струнники')
-        btn2 = types.KeyboardButton('Узнать расписание Народники')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание Струнники')
+        btn2 = tb.types.KeyboardButton('Узнать расписание Народники')
         markup.add(btn1, btn2)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
     elif message.text =='Узнать расписание Народники':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание на один день')
-        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
-        btn3 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание на один день')
+        btn2 = tb.types.KeyboardButton('Узнать расписание на всю неделю')
+        btn3 = tb.types.KeyboardButton('Назад')
         markup.add(btn1, btn2, btn3)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
     elif message.text =='Назад':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание Струнники')
-        btn2 = types.KeyboardButton('Узнать расписание Народники')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание Струнники')
+        btn2 = tb.types.KeyboardButton('Узнать расписание Народники')
         markup.add(btn1, btn2)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
     elif message.text == 'Узнать расписание Струнники':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=False)
-        btn1 = types.KeyboardButton('Узнать расписание на день')
-        btn2 = types.KeyboardButton('Узнать расписание на неделю')
-        btn3 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=False)
+        btn1 = tb.types.KeyboardButton('Узнать расписание на день')
+        btn2 = tb.types.KeyboardButton('Узнать расписание на неделю')
+        btn3 = tb.types.KeyboardButton('Назад')
         markup.add(btn1, btn2, btn3)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
@@ -70,14 +70,14 @@ def get_text_messages(message):
                 Оркестровый класс - 14:25-17:35""")
 
     elif message.text == 'Узнать расписание на день':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn3 = types.KeyboardButton('Понедельник')
-        btn4 = types.KeyboardButton('Вторник')
-        btn5 = types.KeyboardButton('Среда')
-        btn6 = types.KeyboardButton('Четверг')
-        btn7 = types.KeyboardButton('Пятница')
-        btn8 = types.KeyboardButton('Суббота')
-        btn9 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn3 = tb.types.KeyboardButton('Понедельник')
+        btn4 = tb.types.KeyboardButton('Вторник')
+        btn5 = tb.types.KeyboardButton('Среда')
+        btn6 = tb.types.KeyboardButton('Четверг')
+        btn7 = tb.types.KeyboardButton('Пятница')
+        btn8 = tb.types.KeyboardButton('Суббота')
+        btn9 = tb.types.KeyboardButton('Назад')
         markup.add(btn3, btn4, btn5, btn6, btn7, btn8, btn9)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
@@ -117,10 +117,10 @@ def get_text_messages(message):
                 Оркестровый класс - 14:25-17:35""")
 
     elif message.text == 'Назад' :
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание на один день')
-        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
-        btn3 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание на один день')
+        btn2 = tb.types.KeyboardButton('Узнать расписание на всю неделю')
+        btn3 = tb.types.KeyboardButton('Назад')
         markup.add(btn1, btn2,btn3)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
@@ -129,10 +129,10 @@ def get_text_messages(message):
 
 
     elif message.text =='Узнать расписание Народники':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание на один день')
-        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
-        btn3 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание на один день')
+        btn2 = tb.types.KeyboardButton('Узнать расписание на всю неделю')
+        btn3 = tb.types.KeyboardButton('Назад')
         markup.add(btn1, btn2, btn3)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
@@ -163,14 +163,14 @@ def get_text_messages(message):
         Естествознание - 14:25-15:55""")
 
     elif message.text == 'Узнать расписание на один день':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn3 = types.KeyboardButton('Понедельник')
-        btn4 = types.KeyboardButton('Вторник')
-        btn5 = types.KeyboardButton('Среда')
-        btn6 = types.KeyboardButton('Четверг')
-        btn7 = types.KeyboardButton('Пятница')
-        btn8 = types.KeyboardButton('Суббота')
-        btn9 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn3 = tb.types.KeyboardButton('Понедельник')
+        btn4 = tb.types.KeyboardButton('Вторник')
+        btn5 = tb.types.KeyboardButton('Среда')
+        btn6 = tb.types.KeyboardButton('Четверг')
+        btn7 = tb.types.KeyboardButton('Пятница')
+        btn8 = tb.types.KeyboardButton('Суббота')
+        btn9 = tb.types.KeyboardButton('Назад')
         markup.add(btn3, btn4, btn5, btn6, btn7, btn8, btn9)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
@@ -210,10 +210,10 @@ def get_text_messages(message):
                 Естествознание - 14:25-15:55""")
 
     elif message.text == 'Назад' :
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton('Узнать расписание на один день')
-        btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
-        btn3 = types.KeyboardButton('Назад')
+        markup = tb.types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = tb.types.KeyboardButton('Узнать расписание на один день')
+        btn2 = tb.types.KeyboardButton('Узнать расписание на всю неделю')
+        btn3 = tb.types.KeyboardButton('Назад')
         markup.add(btn1, btn2,btn3)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
 
