@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot('6232124469:AAGoNiNcOpaIANkmoovd8xoY2_DtWz6Bs9I')
+bot = telebot.TeleBot("")
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -15,7 +15,7 @@ def start(message):
 def get_text_messages(message):
 
     if message.text == 'Поздороваться':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True) 
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton('Узнать расписание на один день')
         btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
         markup.add(btn1, btn2)
@@ -99,13 +99,3 @@ def get_text_messages(message):
         btn2 = types.KeyboardButton('Узнать расписание на всю неделю')
         markup.add(btn1, btn2)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
-
-
-
-
-
-
-
-
-
-bot.polling(none_stop=True, interval=0)
