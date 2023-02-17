@@ -20,7 +20,6 @@ bandit = "^1.7.4"
 python-dateutil = "^2.8.2"
 tqdm = "^4.64.1"
 isort = "^5.12.0"
-flake8-eradicate = "^1.4.0"
 flake8-print = "^5.0.0"
 flake8-use-fstring = "^1.4"
 
