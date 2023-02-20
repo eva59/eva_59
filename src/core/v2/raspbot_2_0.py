@@ -1,8 +1,8 @@
 import telebot as tb
 from telebot import types
 from core.settings import settings
-from core.Buttons import Buttons
-from core.consts import choose, back
+from core.v2.Buttons import Buttons
+from core.v2.consts import choose, back
 
 from schedule import ScheduleFolk,  ScheduleString , WeekDays
 
@@ -64,7 +64,7 @@ def answer(call,message):
             markup4.add(Buttons.back)
             bot.send_message(message.chat.id, back,reply_markup=1)
              
-    elif call.data == 'string':
+    elif call.data == 'strunn':
         markup4 = types.ReplyKeyboardMarkup(resize_keyboard=True)
         markup4.add(Buttons.daily_schedule, Buttons.weekly_schedule)
         bot.send_message(message.chat.id,choose,reply_markup=markup1)

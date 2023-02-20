@@ -5,7 +5,7 @@ from telebot.types import KeyboardButton
 
 
 class Buttons(Enum):
-    string_schedule = KeyboardButton("Узнать расписание Струнники", callback_data= 'string')
+    string_schedule = KeyboardButton("Узнать расписание Струнники", callback_data= 'strunn')
     folk_schedule = KeyboardButton("Узнать расписание Народники", callback_data= 'folk')
     daily_schedule = KeyboardButton("Узнать расписание на день", callback_data= 'day')
     weekly_schedule = KeyboardButton("Узнать расписание на неделю", callback_data= 'week')
