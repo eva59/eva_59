@@ -23,6 +23,9 @@ isort = "^5.12.0"
 flake8-print = "^5.0.0"
 flake8-use-fstring = "^1.4"
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.21.2"
+
 [tool.pylint]
 extension-pkg-whitelist = ["orjson"]
 
