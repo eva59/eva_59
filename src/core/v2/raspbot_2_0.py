@@ -3,8 +3,7 @@ from telebot import types
 from core.settings import settings
 from core.v2.Buttons import Buttons
 from core.v2.consts import choose, back
-
-from schedule import ScheduleFolk,  ScheduleString , WeekDays
+from core.v2.schedule import ScheduleFolk,  ScheduleString , WeekDays
 
 bot = tb.TeleBot(settings.telegram_token.get_secret_value())
 
@@ -21,20 +20,22 @@ def start(message):
 def get_text_messages(message):
 
     if message.text == 'Поздороваться':
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        markup.add(Buttons.folk_schedule, Buttons.string_schedule)
+        markup = tb.types.InlineKeyboardMarkup(row_width=True)
+        markup.add(Buttons.folk_schedule.value, Buttons.string_schedule.value)
         bot.send_message(message.from_user.id, 'Выберете действие', reply_markup=markup)
-
+    else:
+        pass
+        
 @bot.callback_query_handler(func=lambda call: True)
-def answer(call,message):
+def answer(call,message):        
     if call.data == 'folk':
-        markup1 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        markup1.add(Buttons.daily_schedule, Buttons.weekly_schedule)
+        markup1 = tb.types.InlineKeyboardMarkup(row_width=True)
+        markup1.add(Buttons.daily_schedule.value, Buttons.weekly_schedule.value)
         bot.send_message(message.chat.id,choose,reply_markup=markup1)
 
         if call.data == 'day':
-            markup2 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup2.add(Buttons.monday, Buttons.tuesday, Buttons.wednesday, Buttons.thursday, Buttons.friday,Buttons.saturday, Buttons.back)
+            markup2 = tb.types.InlineKeyboardMarkup(row_width=True)
+            markup2.add(Buttons.monday.value, Buttons.tuesday.value, Buttons.wednesday.value, Buttons.thursday.value, Buttons.friday.value,Buttons.saturday.value, Buttons.back.value)
             bot.send_message(message.chat.id,choose,reply_markup=markup2)
 
             if call.data == 'monday':
@@ -60,19 +61,19 @@ def answer(call,message):
 
         elif call.data =='week':
             bot.send_message(message.chat.id,WeekDays.monday,ScheduleFolk.monday,WeekDays.tuesday,ScheduleFolk.tuesday,WeekDays.wednesday,ScheduleFolk.wednesday,WeekDays.thursday,ScheduleFolk.thursday,WeekDays.friday,ScheduleFolk.friday,WeekDays.saturday,ScheduleFolk.saturday,reply_markup=markup1)
-            markup4 = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            markup4 = tb.types.InlineKeyboardMarkup(row_width=True)
             markup4.add(Buttons.back)
             bot.send_message(message.chat.id, back,reply_markup=1)
              
     elif call.data == 'strunn':
-        markup4 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        markup4.add(Buttons.daily_schedule, Buttons.weekly_schedule)
+        markup4 = tb.types.InlineKeyboardMarkup(row_width=True)
+        markup4.add(Buttons.daily_schedule.value, Buttons.weekly_schedule.value)
         bot.send_message(message.chat.id,choose,reply_markup=markup1)
        
 
         if call.data == 'day':
-            markup5 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup5.add(Buttons.monday, Buttons.tuesday, Buttons.wednesday, Buttons.thursday, Buttons.friday,Buttons.saturday, Buttons.back)
+            markup5 = tb.types.InlineKeyboardMarkup(row_width=True)
+            markup5.add(Buttons.monday.value, Buttons.tuesday.value, Buttons.wednesday.value, Buttons.thursday.value, Buttons.friday.value,Buttons.saturday.value, Buttons.back.value)
             bot.send_message(message.chat.id,choose,reply_markup=5)
 
             if call.data == 'monday':
@@ -98,8 +99,8 @@ def answer(call,message):
 
         elif call.data =='week':
             bot.send_message(message.chat.id,WeekDays.monday,ScheduleString.monday,WeekDays.tuesday,ScheduleString.tuesday,WeekDays.wednesday,ScheduleString.wednesday,WeekDays.thursday,ScheduleString.thursday,WeekDays.friday,ScheduleString.friday,WeekDays.saturday,ScheduleString.saturday,reply_markup=markup4)
-            markup4 = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup4.add(Buttons.back)
+            markup4 = tb.types.InlineKeyboardMarkup(row_width=True)
+            markup4.add(Buttons.back.value)
             bot.send_message(message.chat.id, back,reply_markup=4)
     
     elif call.data == 'back':
