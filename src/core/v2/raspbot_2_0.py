@@ -1,8 +1,8 @@
 import telebot as tb
 from telebot import types
-from ..settings import settings
-from Buttons import Buttons
-from consts import choose, back
+from core.settings import settings
+from core.Buttons import Buttons
+from core.consts import choose, back
 
 from schedule import ScheduleFolk,  ScheduleString , WeekDays
 
